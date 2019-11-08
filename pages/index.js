@@ -6,10 +6,10 @@ export default function index() {
     return (
         <div>
             <Link href="/about">
-                <a>About page</a>
+                <button>About page</button>
             </Link>
             <Link href="/contact">
-                <a>Contact us</a>
+                <span>Contact us</span>
             </Link>
             <h1>My Index page</h1>
         </div>
