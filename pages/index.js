@@ -1,17 +1,25 @@
+import axios from "axios";
 import React from "react";
 
-const index = () => {
+const index = ({ posts }) => {
     console.log("*********** RUNNING INDEX");
     return (
         <div>
             <h1>My Index page</h1>
+            <ul>
+                {posts.map(post => (
+                    <li key={post.id}>{post.title}</li>
+                ))}
+            </ul>
         </div>
     );
 };
 
 index.getInitialProps = async () => {
-    console.log("GETINITIALPROPS 2.0 - FUNCTION COMPONENT");
-    return {};
+    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+    const { data } = res;
+    console.log(data[0]);
+    return { posts: data };
 };
 
 export default index;
@@ -28,14 +36,21 @@ export default index;
 //     }
 
 //     static async getInitialProps() {
-//         console.log("FETCHING YOUR DATA - GETINITIALPROPS");
-//         return {};
+//         const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+//         const { data } = res;
+//         console.log(data[0]);
+//         return { posts: data };
 //     }
 
 //     render() {
+//         const { posts } = this.props;
 //         return (
 //             <div>
-//                 <h1>My Index page</h1>
+//                 <ul>
+//                     {posts.map(post => (
+//                         <li key={post.id}>{post.title}</li>
+//                     ))}
+//                 </ul>
 //             </div>
 //         );
 //     }
