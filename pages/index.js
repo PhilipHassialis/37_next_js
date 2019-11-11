@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import Link from "next/link";
 
 const index = ({ posts }) => {
     console.log("*********** RUNNING INDEX");
@@ -8,7 +9,11 @@ const index = ({ posts }) => {
             <h1>My Index page</h1>
             <ul>
                 {posts.map(post => (
-                    <li key={post.id}>{post.title}</li>
+                    <li key={post.id}>
+                        <Link href={`/post?id=${post.id}`}>
+                            <a>{post.title}</a>
+                        </Link>
+                    </li>
                 ))}
             </ul>
         </div>
@@ -18,7 +23,6 @@ const index = ({ posts }) => {
 index.getInitialProps = async () => {
     const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
     const { data } = res;
-    console.log(data[0]);
     return { posts: data };
 };
 
