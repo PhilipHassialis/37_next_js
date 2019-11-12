@@ -1,9 +1,9 @@
-import axios from "axios";
-import React from "react";
-import Link from "next/link";
+import axios from 'axios'
+import React from 'react'
+import Link from 'next/link'
 
 const index = ({ posts }) => {
-    console.log("*********** RUNNING INDEX");
+    console.log('*********** RUNNING INDEX')
     return (
         <div>
             <h1>My Index page</h1>
@@ -17,16 +17,16 @@ const index = ({ posts }) => {
                 ))}
             </ul>
         </div>
-    );
-};
+    )
+}
 
 index.getInitialProps = async () => {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-    const { data } = res;
-    return { posts: data };
-};
+    const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const { data } = res
+    return { posts: data }
+}
 
-export default index;
+export default index
 
 // import React, { Component } from "react";
 
